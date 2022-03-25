@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ButtonReusable from "../../Components/Button/Index";
 import InputReusable from "../../Components/Input/Index";
 import UserOrCompany from "../../Components/UserOrCompany/Index";
@@ -16,19 +17,21 @@ function LoginPage() {
   const submitLogin = async () => {
     const { email, password } = loginInfos;
     if (!loginType) return window.alert("Selecione a forma de login");
-    await login("user", { email, password });
+    await login(loginType, { email, password });
   };
 
   return (
     <div>
       <UserOrCompany setState={setLoginType} />
       <InputReusable
+        type='text'
         placeholder='Email'
         onChange={handleLogin}
         name='email'
         value={loginInfos.email}
       />
       <InputReusable
+        type='password'
         placeholder='Senha'
         onChange={handleLogin}
         name='password'
@@ -37,6 +40,9 @@ function LoginPage() {
       <ButtonReusable type='button' onClick={submitLogin}>
         teste
       </ButtonReusable>
+      <div>
+        <Link to='/register'>Não tem cadastro? Clique aqui</Link>
+      </div>
     </div>
   );
 }
