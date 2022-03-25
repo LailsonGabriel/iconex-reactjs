@@ -15,10 +15,10 @@ function Dashboard() {
           Sair
         </ButtonReusable>
       </div>
-      <div>
-        <h5>Dados:</h5>
-        <p>Nome: {userLogged.name}</p>
-        <p>Email: {userLogged.email}</p>
+      <div className='d-flex'>
+        <h5 style={{ marginLeft: "10px" }}>Dados:</h5>
+        <p style={{ marginLeft: "10px" }}>Nome: {userLogged.name}</p>
+        <p style={{ marginLeft: "10px" }}>Email: {userLogged.email}</p>
       </div>
       <h1>Dashboard</h1>
       <div>

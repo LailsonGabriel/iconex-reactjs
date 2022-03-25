@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Form } from "react-bootstrap";
 import myContext from "../../Context/MyContext";
 
 function UserOrCompany() {
@@ -9,12 +10,17 @@ function UserOrCompany() {
   };
 
   return (
-    <div>
-      <label htmlFor='one' onChange={(e) => handleCheckbox(e)}>
+    <div className='d-flex w-50 p-3 flex-column'>
+      <div>Selecione sua categoria</div>
+      <label
+        htmlFor='one'
+        onChange={(e) => handleCheckbox(e)}
+        className='d-flex'
+      >
         Usuário
-        <input type='radio' name='one' value='user' />
+        <Form.Check type='radio' name='one' value='user' />
         Companhia
-        <input type='radio' name='one' value='company' />
+        <Form.Check type='radio' name='one' value='company' />
       </label>
     </div>
   );

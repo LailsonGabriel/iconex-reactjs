@@ -1,5 +1,7 @@
+import { Button } from "react-bootstrap";
+
 function ButtonReusable(props) {
-  return <button {...props}>{props.children}</button>;
+  return <Button {...props}>{props.children}</Button>;
 }
 
 export default ButtonReusable;

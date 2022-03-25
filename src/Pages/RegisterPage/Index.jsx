@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import ButtonReusable from "../../Components/Button/Index";
 import InputReusable from "../../Components/Input/Index";
 import UserOrCompany from "../../Components/UserOrCompany/Index";
@@ -52,9 +53,12 @@ function RegisterPage() {
         name='password'
         value={RegisterInfos.password}
       />
-      <ButtonReusable type='button' onClick={submitRegister}>
-        teste
+      <ButtonReusable variant='primary' type='button' onClick={submitRegister}>
+        Registrar
       </ButtonReusable>
+      <div>
+        <Link to='/login'>Volte para o login</Link>
+      </div>
     </div>
   );
 }

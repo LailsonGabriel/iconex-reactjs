@@ -26,7 +26,7 @@ function LoginPage() {
   };
 
   return (
-    <div>
+    <div className='mx-auto'>
       <UserOrCompany />
       <InputReusable
         type='text'
@@ -43,7 +43,7 @@ function LoginPage() {
         value={loginInfos.password}
       />
       <ButtonReusable type='button' onClick={submitLogin}>
-        teste
+        Login
       </ButtonReusable>
       <div>
         <Link to='/register'>Não tem cadastro? Clique aqui</Link>
