@@ -9,7 +9,6 @@ const login = async (type, { email, password }) => {
     } = await api.post(`auth/${type}/login`, { email, password });
     Cookies.set("session", token, { expires: 7 });
     api.defaults.headers.common["Authorization"] = `${token}`;
-    window.location.replace("/");
   } catch (err) {
     return { err };
   }
@@ -31,11 +30,11 @@ if (tokenCookie) {
 const register = async (type, { name, email, password }) => {
   try {
     const {
-      data: { token },
+      data: { token, result },
     } = await api.post(`/auth/${type}/register`, { name, email, password });
     Cookies.set("session", token, { expires: 7 });
     api.defaults.headers.common["Authorization"] = `${token}`;
-    window.location.replace("/");
+    return result;
   } catch (err) {
     return { err };
   }

@@ -21,6 +21,7 @@ function RegisterPage() {
     const { email, password, name } = RegisterInfos;
     if (!RegisterType) return window.alert("Selecione a forma de login");
     await register(RegisterType, { name, email, password });
+    window.location.replace("/");
   };
 
   return (

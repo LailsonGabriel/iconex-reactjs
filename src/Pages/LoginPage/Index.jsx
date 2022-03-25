@@ -18,6 +18,7 @@ function LoginPage() {
     const { email, password } = loginInfos;
     if (!loginType) return window.alert("Selecione a forma de login");
     await login(loginType, { email, password });
+    window.location.replace("/");
   };
 
   return (
