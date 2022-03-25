@@ -5,10 +5,11 @@ const tokenCookie = Cookies.get("session");
 const login = async (type, { email, password }) => {
   try {
     const {
-      data: { token },
+      data: { token, result },
     } = await api.post(`auth/${type}/login`, { email, password });
     Cookies.set("session", token, { expires: 7 });
     api.defaults.headers.common["Authorization"] = `${token}`;
+    return result;
   } catch (err) {
     return { err };
   }

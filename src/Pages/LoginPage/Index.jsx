@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonReusable from "../../Components/Button/Index";
 import InputReusable from "../../Components/Input/Index";
 import UserOrCompany from "../../Components/UserOrCompany/Index";
+import myContext from "../../Context/MyContext";
 import { login } from "../../services/auth";
+import setInLocalStorage from "../../utils/setInLocalStorage";
 import setInputState from "../../utils/setInputState";
 
 function LoginPage() {
-  const [loginType, setLoginType] = useState("");
+  const { userType } = useContext(myContext);
   const [loginInfos, setLoginInfos] = useState({ email: "", password: "" });
 
   const handleLogin = (e) => {
@@ -16,14 +18,16 @@ function LoginPage() {
 
   const submitLogin = async () => {
     const { email, password } = loginInfos;
-    if (!loginType) return window.alert("Selecione a forma de login");
-    await login(loginType, { email, password });
-    window.location.replace("/");
+    if (!userType) return window.alert("Selecione a forma de login");
+    const data = await login(userType, { email, password });
+    setInLocalStorage("userLogged", data);
+    setInLocalStorage("typeLogged", userType);
+    window.location.reload();
   };
 
   return (
     <div>
-      <UserOrCompany setState={setLoginType} />
+      <UserOrCompany />
       <InputReusable
         type='text'
         placeholder='Email'

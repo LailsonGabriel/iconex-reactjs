@@ -1,54 +1,58 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ButtonReusable from "../../Components/Button/Index";
 import InputReusable from "../../Components/Input/Index";
 import UserOrCompany from "../../Components/UserOrCompany/Index";
+import myContext from "../../Context/MyContext";
 import { register } from "../../services/auth";
+import setInLocalStorage from "../../utils/setInLocalStorage";
 import setInputState from "../../utils/setInputState";
 
 function RegisterPage() {
-  const [RegisterType, setRegisterType] = useState("");
+  const { userType } = useContext(myContext);
   const [RegisterInfos, setRegisterInfos] = useState({
     name: "",
     email: "",
     password: "",
   });
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     setInputState(e, RegisterInfos, setRegisterInfos);
   };
 
-  const submitLogin = async () => {
+  const submitRegister = async () => {
     const { email, password, name } = RegisterInfos;
-    if (!RegisterType) return window.alert("Selecione a forma de login");
-    await register(RegisterType, { name, email, password });
-    window.location.replace("/");
+    if (!userType) return window.alert("Selecione a forma de registro");
+    const data = await register(userType, { name, email, password });
+    setInLocalStorage("userLogged", data);
+    setInLocalStorage("typeLogged", userType);
+    window.location.reload();
   };
 
   return (
     <div>
-      <UserOrCompany setState={setRegisterType} />
+      <UserOrCompany />
       <InputReusable
         type='text'
         placeholder='Nome'
-        onChange={handleLogin}
+        onChange={handleRegister}
         name='name'
         value={RegisterInfos.name}
       />
       <InputReusable
         type='text'
         placeholder='Email'
-        onChange={handleLogin}
+        onChange={handleRegister}
         name='email'
         value={RegisterInfos.email}
       />
       <InputReusable
         type='password'
         placeholder='Senha'
-        onChange={handleLogin}
+        onChange={handleRegister}
         name='password'
         value={RegisterInfos.password}
       />
-      <ButtonReusable type='button' onClick={submitLogin}>
+      <ButtonReusable type='button' onClick={submitRegister}>
         teste
       </ButtonReusable>
     </div>
