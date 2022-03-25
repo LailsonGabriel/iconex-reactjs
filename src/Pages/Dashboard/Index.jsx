@@ -6,6 +6,8 @@ import CompanyResults from "./Company/Index";
 import UserResults from "./User/Index";
 
 function Dashboard() {
+  const style = { marginLeft: "10px" };
+
   const { userLogged, userType } = useContext(myContext);
 
   return (
@@ -16,9 +18,9 @@ function Dashboard() {
         </ButtonReusable>
       </div>
       <div className='d-flex'>
-        <h5 style={{ marginLeft: "10px" }}>Dados:</h5>
-        <p style={{ marginLeft: "10px" }}>Nome: {userLogged.name}</p>
-        <p style={{ marginLeft: "10px" }}>Email: {userLogged.email}</p>
+        <h5 style={style}>Dados:</h5>
+        <p style={style}>Nome: {userLogged.name}</p>
+        <p style={style}>Email: {userLogged.email}</p>
       </div>
       <h1>Dashboard</h1>
       <div>
