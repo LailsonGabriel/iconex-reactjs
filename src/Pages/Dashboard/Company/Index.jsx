@@ -1,13 +1,18 @@
+import ChartReusable from "../../../Components/Chart/Index";
+
 function CompanyResults({ user }) {
   const { totalTraveledWeek, totalOrder, completedOrders } = user;
 
-  return (
-    <div>
-      <h5>Evolução semanal dos pedidos: {totalTraveledWeek}</h5>
-      <h5>Total de Pedidos: {totalOrder}</h5>
-      <h5>Total de Pedidos Finalizados: {completedOrders}</h5>
-    </div>
-  );
+  const values = [
+    ["Infos", "Informações"],
+    ["Evolução semanal dos pedidos", totalTraveledWeek],
+    ["Total de Pedidos", totalOrder],
+    ["Total de Pedidos Finalizados", completedOrders],
+  ];
+
+  const options = { title: "Resumo da Companhia" };
+
+  return <ChartReusable options={options} values={values} />;
 }
 
 export default CompanyResults;
